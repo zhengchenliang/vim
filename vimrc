@@ -1,16 +1,4 @@
-"  __  __        __     _____ __  __ ____   ____
-" |  \/  |_   _  \ \   / /_ _|  \/  |  _ \ / ___|
-" | |\/| | | | |  \ \ / / | || |\/| | |_) | |
-" | |  | | |_| |   \ V /  | || |  | |  _ <| |___
-" |_|  |_|\__, |    \_/  |___|_|  |_|_| \_\\____|
-"         |___/
-
-" Todos
-" - vimwiki
-" - pylint reports error when doing `vim ~/Github/vim-calc/build-up/calc.py`
-"   instead of doing `cd ~/Github/vim-calc/build-up` and then do `vim calc.py`
-" - hotkey to switch between light theme and dark theme (in progress, still
-"   some bugs
+" Forked from David Chen
 
 " ===
 " === Auto load for first time uses
@@ -28,7 +16,7 @@ endif
 " ===
 " === System
 " ===
-set nocompatible
+set nocompatible " fuk vi
 filetype on
 filetype indent on
 filetype plugin on
@@ -45,7 +33,7 @@ let &t_ut=''
 " === Main code display
 " ===
 set number
-set relativenumber
+# set relativenumber
 set ruler
 set cursorline
 syntax enable
@@ -104,17 +92,16 @@ set incsearch
 set ignorecase
 set smartcase
 
-
 " ===
 " === Restore Cursor Position
 " ===
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
-
 " ===
 " === Basic Mappings
 " ===
 
+"  VITAL <LEADER> Leader key
 " Set <LEADER> as <SPACE>
 let mapleader=" "
 
@@ -125,24 +112,27 @@ map <LEADER>/ :!
 map <LEADER>r :r !
 map <LEADER>sr :%s/
 
+"  VITAL <CR> = Ctrl+M = <Return> = <Enter> Change line key
 " Save & quit
 map Q :q<CR>
-map S :w<CR>
+map W :w<CR>
 
 " Open the vimrc file anytime
 map <LEADER>rc :e ~/.vim/vimrc<CR>
 
 " Undo operations
-noremap l u
+"  noremap l u
 " Undo in Insert mode
-inoremap <C-l> <C-u>
+"  inoremap <C-l> <C-u>
 
+"  VITAL a = add; s = insert;
 " Insert Key
-noremap k i
-noremap K I
-
+noremap s i
+noremap S I
+"  VITAL press f to copy
+noremap f y
 " Copy to system clipboard
-vnoremap Y :w !xclip -i -sel c<CR>
+vnoremap F :w !xclip -i -sel c<CR>
 
 " Search
 map <LEADER><CR> :nohlsearch<CR>
@@ -155,61 +145,61 @@ map <LEADER>fd /\(\<\w\+\>\)\_s*\1
 " Others
 map <LEADER>o o<Esc>u
 
-
 " ===
 " === Cursor Movement
 " ===
 "
 " New cursor movement (the default arrow keys are used for resizing windows)
 "     ^
-"     u
-" < n   i >
-"     e
+"     i
+" < j   l >
+"     k
 "     v
-noremap u k
-noremap n h
-noremap e j
-noremap i l
+noremap i k
+noremap j h
+noremap k j
+"  noremap l l
 " U/E keys for 5 times u/e (faster navigation)
-noremap U 5k
-noremap E 5j
-" N key: go to the start of the line
-noremap N 0
-" I key: go to the end of the line
-noremap I $
+noremap I 5k
+noremap J 5h
+noremap K 5j
+noremap L 5l
+" D key: go to the start of the line
+noremap D 0
+" F key: go to the end of the line
+noremap F $
 
 " Faster in-line navigation
-noremap W 5w
-noremap B 5b
+noremap P 5w
+noremap O 5b
 " set h (same as n, cursor left) to 'end of word'
-noremap h e
+"  noremap h e
 
-" Ctrl + U or E will move up/down the view port without moving the cursor
-noremap <C-U> 5<C-y>
-noremap <C-E> 5<C-e>
-inoremap <C-U> <Esc>5<C-y>a
-inoremap <C-E> <Esc>5<C-e>a
-
+" Ctrl + i or k will move up/down the view port without moving the cursor
+noremap <C-i> 5<C-y>
+noremap <C-k> 5<C-e>
+inoremap <C-i> <Esc>5<C-y>a
+inoremap <C-k> <Esc>5<C-e>a
 
 " ===
 " === Window management
 " ===
 " Use <space> + new arrow keys for moving the cursor around windows
-map <LEADER>w <C-w>w
-map <LEADER>u <C-w>k
-map <LEADER>e <C-w>j
-map <LEADER>n <C-w>h
-map <LEADER>i <C-w>l
+map <LEADER>n <C-w>w
+map <LEADER>i <C-w>k
+map <LEADER>k <C-w>j
+map <LEADER>j <C-w>h
+map <LEADER>l <C-w>l
 "map <LEADER>r <C-w>r
 
 " Disabling the default s key
-noremap s <nop>
+"  noremap s <nop>
 
 " split the screens to up (horizontal), down (horizontal), left (vertical), right (vertical)
-map su :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
-map se :set splitbelow<CR>:split<CR>
-map sn :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
-map si :set splitright<CR>:vsplit<CR>
+map si :set nosplitbelow<CR>:split<CR>:set splitbelow<CR>
+map sk :set splitbelow<CR>:split<CR>
+map sj :set nosplitright<CR>:vsplit<CR>:set splitright<CR>
+map sl :set splitright<CR>:vsplit<CR>
 
 " Resize splits with arrow keys
 map <up> :res +5<CR>
@@ -218,27 +208,25 @@ map <left> :vertical resize-5<CR>
 map <right> :vertical resize+5<CR>
 
 " Place the two screens up and down
-noremap sh <C-w>t<C-w>K
+noremap su <C-w>t<C-w>K
 " Place the two screens side by side
-noremap sv <C-w>t<C-w>H
+noremap sh <C-w>t<C-w>H
 
 " Rotate screens
-noremap srh <C-w>b<C-w>K
-noremap srv <C-w>b<C-w>H
-
+noremap sfu <C-w>b<C-w>K
+noremap sfh <C-w>b<C-w>H
 
 " ===
 " === Tab management
 " ===
-" Create a new tab with tu
-map tu :tabe<CR>
-" Move around tabs with tn and ti
-map tn :-tabnext<CR>
-map ti :+tabnext<CR>
-" Move the tabs with tmn and tmi
-map tmn :-tabmove<CR>
-map tmi :+tabmove<CR>
-
+" Create a new tab with fn
+map fn :tabe<CR>
+" Move around tabs with fj and fl
+map fj :-tabnext<CR>
+map fl :+tabnext<CR>
+" Move the tabs with fk and fi
+map fk :-tabmove<CR>
+map fi :+tabmove<CR>
 
 " ===
 " === Other useful stuff
@@ -300,7 +288,6 @@ func! CompileBuildrrr()
     exec "echo"
   endif
 endfunc
-
 
 " ===
 " === Install Plugins with Vim-Plug
@@ -401,7 +388,6 @@ if empty(glob('~/.vim/_machine_specific.vim'))
 endif
 source ~/.vim/_machine_specific.vim
 
-
 " ===
 " === Dress up my vim
 " ===
@@ -428,7 +414,6 @@ let g:lightline = {
 " set statusline+=%{SyntasticStatuslineFlag()}
 " set statusline+=%*
 
-
 " ===
 " === NERDTree
 " ===
@@ -443,7 +428,6 @@ let NERDTreeMapOpenInTab = "o"
 let NERDTreeMapPreview = ""
 let NERDTreeMapCloseDir = "n"
 let NERDTreeMapChangeRoot = "y"
-
 
 " ===
 " === You Complete ME
@@ -471,14 +455,12 @@ let g:indent_guides_color_change_percent = 1
 silent! unmap <LEADER>ig
 autocmd WinEnter * silent! unmap <LEADER>ig
 
-
 " ===
 " === ale
 " ===
 let b:ale_linters = [] "['pylint']
 " let b:ale_fixers = ['autopep8', 'yapf']
 let g:ale_python_pylint_options = "--extension-pkg-whitelist=pygame"
-
 
 " ===
 " === MarkdownPreview
@@ -506,43 +488,36 @@ let g:mkdp_highlight_css = ''
 let g:mkdp_port = ''
 let g:mkdp_page_title = '「${name}」'
 
-
 " ===
 " === Python-syntax
 " ===
 let g:python_highlight_all = 1
 " let g:python_slow_sync = 0
 
-
 " ===
 " === Taglist
 " ===
 map <silent> T :TagbarOpenAutoClose<CR>
-
 
 " ===
 " === vim-table-mode
 " ===
 map <LEADER>tm :TableModeToggle<CR>
 
-
 " ===
 " === CtrlP
 " ===
 map <C-p> :CtrlP<CR>
-
 
 " ===
 " === vim-better-whitespace
 " ===
 let g:better_whitespace_enabled=0
 
-
 " ===
 " === Goyo
 " ===
 map <LEADER>gy :Goyo<CR>
-
 
 " ===
 " === CtrlP
@@ -551,7 +526,6 @@ let g:ctrlp_prompt_mappings = {
   \ 'PrtSelectMove("j")':   ['<c-e>', '<down>'],
   \ 'PrtSelectMove("k")':   ['<c-u>', '<up>'],
   \ }
-
 
 " ===
 " === vim-signiture
@@ -580,7 +554,6 @@ let g:SignatureMap = {
         \ 'ListLocalMarkers'   :  "m?"
         \ }
 
-
 " ===
 " === Undotree
 " ===
@@ -597,8 +570,6 @@ let g:UltiSnipsExpandTrigger           = '<C-z>'
 let g:UltiSnipsJumpForwardTrigger      = '<C-z>'
 "let g:UltiSnipsJumpBackwardTrigger     = '<s-tab>'
 
-
-
 " ==
 " == NERDTree-git
 " ==
@@ -613,7 +584,6 @@ let g:NERDTreeIndicatorMapCustom = {
     \ "Clean"     : "✔︎",
     \ "Unknown"   : "?"
     \ }
-
 
 " Testring my own plugin
 if !empty(glob('~/Github/vim-calc/vim-calc.vim'))
@@ -653,7 +623,6 @@ let g:taskwiki_syntax = 'markdown'
 let g:taskwiki_markdown_syntax='markdown'
 let g:taskwiki_markup_syntax='markdown'
 source ~/.vim/snippits.vim
-
 
 " === Experimenting coc.nvim features
 set timeoutlen=100
