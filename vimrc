@@ -9,7 +9,8 @@
 
 " load /pack/*/opt packages at vim start
 " see :help packages
-packadd! onedark.vim
+"  packadd! onedark.vim " it may has other prerequisites like atom color interpreter so forget it
+" nvim for full configuration, vim for only plain
 
 " === System
 set nocompatible " fuk vi
@@ -20,8 +21,8 @@ filetype plugin on " plugin for file type on
 filetype plugin indent on " indent in plugin for file type on
 set mouse=a " use mouse
 set clipboard=unnamed " use system clipboard
-"  set encoding=utf-8 " use fixed encoding
-"  colorscheme darkblue " use vim color scheme
+set encoding=utf-8 " use fixed encoding
+colorscheme habamax " use vim color scheme
 
 " Prevent incorrect background rendering
 let &t_ut=''
@@ -33,6 +34,7 @@ set ruler
 set cursorline
 syntax enable
 syntax on
+"  colorscheme onedark " use onedark scheme
 
 " === Editor behavior
 " Better tab
@@ -105,15 +107,19 @@ noremap y <C-r>
 " Undo in Insert mode
 "  inoremap <C-l> <C-u>
 
-"  VITAL a = add; s = insert;
+" VITAL a = add; s = insert;
 noremap s i
 noremap S I
-"  VITAL press f to copy and press h to paste
+" VITAL press f to copy and press h to paste
 noremap f y
 noremap h p
-noremap H P
-" Copy to system clipboard
-vnoremap F :w !xclip -i -sel c<CR>
+" VITAL google for vim script func: copy and paste with the system clipboard
+vnoremap <C-c> :w !xclip -i -sel clip<CR><CR>
+noremap <C-v> :call PasteFromXclip()<CR>
+func! PasteFromXclip()
+  let lin = line(".")
+  exec lin . "r !xclip -o -sel clip"
+endfunc
 
 " Search
 map <LEADER><CR> :nohlsearch<CR>
@@ -178,10 +184,10 @@ noremap gfu <C-w>b<C-w>K
 noremap gfh <C-w>b<C-w>H
 
 " Resize splits with arrow keys
-map <up> :res +5<CR>
-map <down> :res -5<CR>
-map <left> :vertical resize-5<CR>
-map <right> :vertical resize+5<CR>
+"  map <up> :res +5<CR>
+"  map <down> :res -5<CR>
+"  map <left> :vertical resize-5<CR>
+"  map <right> :vertical resize+5<CR>
 
 " === Tabe management
 " Create a new tabe
@@ -204,9 +210,6 @@ inoremap <C-x> <Esc>ea<C-x>s
 
 " Press ` to change case (instead of ~)
 map ` ~
-
-imap <C-c> <Esc>zza
-nmap <C-c> zz
 
 " Auto change directory to current dir
 autocmd BufEnter * silent! lcd %:p:h

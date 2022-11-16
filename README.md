@@ -6,12 +6,22 @@ Run:
 
 Settings:
   Q = :q - quit                  q - recording
-  W = :w - write                 w - recording
+  W = :w - write                 w - to next word
   E - to word end                e - to word end
   R - enter replace mode         r - replace single char
   T -                            t -
-  Y - (replaced)                 y - redo
-  U - undo line                  u - undo
+
+  a - enter insert mode append   A - enter insert mode append at eof
+  s - enter insert mode insert   S - enter insert mode insert at bol
+  d - delete to vim register     D - go to line beginning
+  f - copy to vim register       F - go to next same-char word
+  g -                            G -
+
+  Z - quit                       z - extra cmds
+  X - delete last char to insert x - delete this char to insert
+  C - delete till eol to insert  c - delete within range to insert
+  V - enter visual line mode     v - enter visual mode
+  B - to previous word           b - to previous word
 
   I - cursor up 5                i - cursor up
   J - cursor left 5              j - cursor left
@@ -20,21 +30,14 @@ Settings:
   Space+i - up 5 cursor stay
   Space+k - down 5 cursor stay
 
+  h - paste from vim register    H -
+
+  Y - copy line to vim register  y - redo
+  U - undo line                  u - undo
+
   O - cursor left 5 words        o - cursor left 1 word
   P - cursor right 5 words       p - cursor right 1 word
 
-  a - enter insert mode append   A - enter insert mode append at eof
-  s - enter insert mode insert   S - enter insert mode insert at bol
-  d - delete to vim register     D - go to line beginning
-  f - copy to vim register       F - copy to system clipboard (pacman -S xclip)
-  h - paste after                H - paste before
-  g -                            G -
-
-  Z - quit                       z - extra cmds
-  X - enter insert mode w/ backs x - enter insert mode w/ delete char
-  C - enter insert mode to eol   c - enter insert mode change
-  V - enter visual line mode     v - enter visual mode
-  B - to previous word           b - to previous word
   N - to previous word find      n - to next word find
   M -                            m -
 
@@ -60,3 +63,11 @@ Settings:
   
   bd - build program -> 283-291: implemented
   rn - run program -> 254-281: implemented
+
+  Ctrl+c - copy lines to system clipboard (pacman -S xclip)
+  Ctrl+v - paste system clipboard after current line (pacman -S xclip)
+
+Comments:
+  pure vim + xclip here can only copy/paste by lines
+  no plugins no packages only system settings
+  xclip required for copy/paste with the system clipboard
