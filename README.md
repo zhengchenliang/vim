@@ -9,8 +9,8 @@ Settings:
   W = :w - write                 w - recording
   E - to word end                e - to word end
   R - enter replace mode         r - replace single char
-  T -                            t - 
-  Y - (replaced)                 y - (replaced)
+  T -                            t -
+  Y - (replaced)                 y - redo
   U - undo line                  u - undo
 
   I - cursor up 5                i - cursor up
@@ -28,7 +28,7 @@ Settings:
   d - delete to vim register     D - go to line beginning
   f - copy to vim register       F - copy to system clipboard (pacman -S xclip)
   h - paste after                H - paste before
-  g -                            G - 
+  g -                            G -
 
   Z - quit                       z - extra cmds
   X - enter insert mode w/ backs x - enter insert mode w/ delete char
@@ -36,27 +36,27 @@ Settings:
   V - enter visual line mode     v - enter visual mode
   B - to previous word           b - to previous word
   N - to previous word find      n - to next word find
-  M -                            m - 
+  M -                            m -
 
-  fi - split this window to up
-  fj - split this window to left
-  fk - split this window to down
-  fl - split this window to right
-  fu - switch up and down windows
-  fh - switch left and right windows
-  fdu - rotate up up up windows
-  fdh - rotate left left left windows
+  gi - split this window to up
+  gj - split this window to left
+  gk - split this window to down
+  gl - split this window to right
+  gu - switch up and down windows
+  gh - switch left and right windows
+  gfu - rotate up up up windows
+  gfh - rotate left left left windows
   Space+n - move cursor to next window
   Space+i - move cursor to up window
   Space+j - move cursor to left window
   Space+k - move cursor to down window
   Space+l - move cursor to right window
   
-  gn - enter tab mode make new tabe
-  gi - move cursor to up tabe
-  gj - move cursor to left tabe
-  gk - move cursor to down tabe
-  gl - move cursor to right tabe
+  tn - enter tab mode make new tabe
+  ti - move cursor to up tabe
+  tj - move cursor to left tabe
+  tk - move cursor to down tabe
+  tl - move cursor to right tabe
   
   bd - build program -> 283-291: implemented
   rn - run program -> 254-281: implemented
