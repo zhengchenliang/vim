@@ -328,6 +328,7 @@ nnoremap qf :UndotreeToggle<CR>
 
 " Plug.Tagbar
 let g:tagbar_ctags_bin = "~/.vim/plugged/ctags/ctags"
+nnoremap if :Tagbar<CR>
 
 " Plug.MarkdownPreview
 let g:mkdp_auto_start = 0
