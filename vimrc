@@ -210,6 +210,10 @@ inoremap <C-x> <Esc>ea<C-x>s
 
 " Press ` to change case (instead of ~)
 map ` ~
+" n key: go to the prev for /
+noremap n N
+" m key: go to the next for /
+noremap m n
 
 " Auto change directory to current dir
 autocmd BufEnter * silent! lcd %:p:h
