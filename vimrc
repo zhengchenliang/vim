@@ -269,3 +269,7 @@ endfunc
 "  Plug 'joshdick/onedark.vim'
 
 "  call plug#end()
+
+nnoremap jf :bprev<CR>
+nnoremap lf :bnext<CR>
+nnoremap kf :bd<CR>
