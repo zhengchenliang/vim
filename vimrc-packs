@@ -234,7 +234,7 @@ noremap m n
 autocmd BufEnter * silent! lcd %:p:h
 
 " Call figlet
-map tx :r !figlet 
+map tx :r !figlet
 
 " Compile function
 map rn :call CompileRunGcc()<CR>
