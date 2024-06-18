@@ -35,6 +35,8 @@ set cursorline
 syntax enable
 syntax on
 "  colorscheme onedark " use onedark scheme
+highlight VerticalBar ctermfg=cyan
+match VerticalBar /\v\|/
 
 " === Editor behavior
 " Better tab
