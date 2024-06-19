@@ -152,7 +152,7 @@ noremap f y
 noremap h p
 " VITAL google for vim script func: copy and paste with the system clipboard
 vnoremap <C-c> :w !xclip -i -sel clip<CR><CR><CR>
-noremap <C-v> :call PasteFromXclip()<CR>
+noremap <C-v> :call PasteFromXclip()<CR><CR>
 func! PasteFromXclip()
   let lin = line(".")
   exec lin . "r !xclip -o -sel clip"
