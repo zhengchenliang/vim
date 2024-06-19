@@ -49,6 +49,7 @@ function! FPS2display()
   let parts0 = split(line0, '|')
   let partn0 = len(parts0)
   if partn0 != partn1 - 2
+    echo
     return
   endif
   let cursor_pos = getpos('.')
@@ -65,7 +66,6 @@ function! FPS2display()
 endfunction
 "  fps display at cursor move
 augroup FPS2display0
-  autocmd!
   autocmd CursorMoved * call FPS2display()
 augroup END
 
