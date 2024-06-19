@@ -49,7 +49,7 @@ function! FPS2display()
   let parts0 = split(line0, '|')
   let partn0 = len(parts0)
   if partn0 != partn1 - 2
-    echo parts1[-1] . " #" . (getpos('.')[1] - 1) . " ignored"
+    echo parts1[-1] . " #" . (getpos('.')[1] - 1) . " | ignored"
     return
   endif
   let cursor_pos = getpos('.')
