@@ -52,6 +52,37 @@ syntax on
 "  colorscheme onedark " use onedark scheme
 highlight VerticalBar ctermfg=cyan
 match VerticalBar /\v\|/
+"  fps display
+function! FPS2display()
+  let line1 = getline(1)
+  let parts1 = split(line1, '|')
+  let partn1 = len(parts1)
+  if partn1 < 2
+    return
+  endif
+  let line0 = getline('.')
+  let parts0 = split(line0, '|')
+  let partn0 = len(parts0)
+  if partn0 != partn1 - 2
+    return
+  endif
+  let cursor_pos = getpos('.')
+  let cursor_sect = 0
+  for part0 in parts0
+    let cursor_sect += 1
+    if cursor_pos[2] < strlen(part0) + 2
+      echo parts1[-1] . " #" . (cursor_pos[1] - 1) . " " . parts1[cursor_sect - 1]
+      return
+    endif
+    let cursor_pos[2] -= strlen(part0) + 1
+  endfor
+  echo "fps not found"
+endfunction
+"  fps display at cursor move
+augroup FPS2display0
+  autocmd!
+  autocmd CursorMoved * call FPS2display()
+augroup END
 
 " === Editor behavior
 " Better tab
