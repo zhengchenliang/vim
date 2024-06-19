@@ -49,7 +49,7 @@ function! FPS2display()
   let parts0 = split(line0, '|')
   let partn0 = len(parts0)
   if partn0 != partn1 - 2
-    echo
+    echo parts1[-1] . " #" . (getpos('.')[1] - 1) . " ignored"
     return
   endif
   let cursor_pos = getpos('.')
@@ -62,7 +62,7 @@ function! FPS2display()
     endif
     let cursor_pos[2] -= strlen(part0) + 1
   endfor
-  echo "fps not found"
+  echo parts1[-1] . " not found"
 endfunction
 "  fps display at cursor move
 augroup FPS2display0
