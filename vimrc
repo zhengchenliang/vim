@@ -45,6 +45,11 @@ function! FPS2display()
   if partn1 < 2
     return
   endif
+  let cursor0 = getpos('.')
+  if cursor0[1] == 1
+    echo
+    return
+  endif
   let line0 = getline('.')
   let parts0 = split(line0, '|')
   let partn0 = len(parts0)
@@ -52,15 +57,14 @@ function! FPS2display()
     echo parts1[-1] . " #" . (getpos('.')[1] - 1) . " | ignored"
     return
   endif
-  let cursor_pos = getpos('.')
   let cursor_sect = 0
   for part0 in parts0
     let cursor_sect += 1
-    if cursor_pos[2] < strlen(part0) + 2
-      echo parts1[-1] . " #" . (cursor_pos[1] - 1) . " " . parts1[cursor_sect - 1]
+    if cursor0[2] < strlen(part0) + 2
+      echo parts1[-1] . " #" . (cursor0[1] - 1) . " " . parts1[cursor_sect - 1]
       return
     endif
-    let cursor_pos[2] -= strlen(part0) + 1
+    let cursor0[2] -= strlen(part0) + 1
   endfor
   echo parts1[-1] . " not found"
 endfunction
