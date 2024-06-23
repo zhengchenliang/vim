@@ -332,6 +332,8 @@ Plug 'preservim/tagbar'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for' :['markdown', 'vim-plug'] }
+" HTML preface
+Plugin 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 
 call plug#end() " :PlugInstall
 " :PlugUpdate to update plugs
@@ -401,3 +403,13 @@ let g:mkdp_page_title = '「${name}」'
 let g:mkdp_filetypes = ['markdown']
 let g:mkdp_theme = 'dark'
 nmap pv :MarkdownPreview<CR>
+
+" Plug.HTMLpreface
+let g:bracey_browser_command = 'firefox --new-window'
+let g:bracey_auto_start_browser = 1
+let g:bracey_refresh_on_save = 1
+let g:bracey_eval_on_save = 1
+let g:bracey_auto_start_server = 1
+let g:bracey_server_allow_remote_connections = 1
+let g:bracey_server_log = '/dev/null'
+nmap pf :Bracey<CR><CR>
