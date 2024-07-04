@@ -12,8 +12,9 @@
 "  packadd! onedark.vim " it may has other prerequisites like atom color interpreter so forget it
 " nvim for full configuration, vim for only plain
 
-" === Vundle
+" === Vundle Installation
 " https://github.com/VundleVim/Vundle.vim
+" git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 set nocompatible " required
 filetype off " required
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -22,6 +23,8 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim' " Vundle required
 Plugin 'godlygeek/tabular' " MD required
 Plugin 'preservim/vim-markdown' " MD
+" HTML preface
+Plugin 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 
 call vundle#end() " :PluginInstall
 " :PluginList       - lists configured plugins
@@ -313,9 +316,8 @@ func! CompileBuildrrr()
   endif
 endfunc
 
-" Vundle Plugin Installation
-" curl -fLo ~/.vim/autoload/plug.vim --create-dirs \
-"   https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" Vim Plug Installation
+" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 call plug#begin()
 " Pretty dress
 Plug 'vim-airline/vim-airline'
@@ -332,8 +334,6 @@ Plug 'preservim/tagbar'
 "Plug 'neoclide/coc.nvim', {'branch': 'release'}
 " Markdown preview
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for' :['markdown', 'vim-plug'] }
-" HTML preface
-Plugin 'turbio/bracey.vim', {'do': 'npm install --prefix server'}
 
 call plug#end() " :PlugInstall
 " :PlugUpdate to update plugs
@@ -367,6 +367,8 @@ nnoremap qf :UndotreeToggle<CR>
 
 " Plug.Tagbar
 let g:tagbar_ctags_bin = "~/.vim/plugged/ctags/ctags"
+" https://github.com/universal-ctags/ctags
+" cd ~/.vim/plugged/ctags; ./autogen.sh; ./configure; make; make install
 nnoremap if :Tagbar<CR>
 
 " Plug.MarkdownPreview
