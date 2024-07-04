@@ -407,6 +407,7 @@ let g:mkdp_theme = 'dark'
 nmap pv :MarkdownPreview<CR>
 
 " Plug.HTMLpreface
+" cd ~/.vim/bundle/bracey.vim; npm install --prefix server
 let g:bracey_browser_command = 'firefox --new-window'
 let g:bracey_auto_start_browser = 1
 let g:bracey_refresh_on_save = 1
