@@ -372,6 +372,7 @@ let g:tagbar_ctags_bin = "~/.vim/plugged/ctags/ctags"
 nnoremap if :Tagbar<CR>
 
 " Plug.MarkdownPreview
+" pacman -S nodejs yarn
 let g:mkdp_auto_start = 0
 let g:mkdp_auto_close = 1
 let g:mkdp_refresh_slow = 0
