@@ -150,13 +150,37 @@ noremap S I
 " VITAL press f to copy and press h to paste
 noremap f y
 noremap h p
-" VITAL google for vim script func: copy and paste with the system clipboard
-vnoremap <C-c> :w !xclip -i -sel clip<CR><CR><CR>
-noremap <C-v> :call PasteFromXclip()<CR><CR>
+" VITAL vim script func: copy and paste with the system clipboard
+func! CopyCurrentLine()
+  call system('echo -n ' . shellescape(getline('.')) . ' | xclip -selection clipboard')
+endfunc
+nnoremap <C-c> :call CopyCurrentLine()<CR><CR>
+function! CopyVisualSelection()
+  try
+    " Save the current content of register a
+    let a_save = @a
+    " Select the visual region and copy it to register a
+    normal! gv"ay
+    " Get the content of register a
+    let selection = @a
+    " Copy the content to the system clipboard using xclip
+    call system('echo -n ' . shellescape(selection) . ' | xclip -selection clipboard')
+  finally
+    " Restore the previous content of register a
+    let @a = a_save
+  endtry
+endfunction
+vnoremap <C-c> :call CopyVisualSelection()<CR><CR>
 func! PasteFromXclip()
   let lin = line(".")
   exec lin . "r !xclip -o -sel clip"
 endfunc
+noremap <C-v> :call PasteFromXclip()<CR><CR>
+" Poor vim cannot distinguish Ctrl and Ctrl + Shift
+" Must use Ctrl + Shift + v to paste at cursor at insert mode
+"inoremap <C-v> <C-S-v>
+nnoremap vb <C-v>
+
 
 " Search
 map <LEADER><CR> :nohlsearch<CR>
