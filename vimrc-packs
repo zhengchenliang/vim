@@ -1,4 +1,4 @@
-Forked from David Chen
+" Forked from David Chen
 
 " === Auto load for first time uses -> I don't install plugins here
 "  if empty(glob('~/.vim/autoload/plug.vim'))
