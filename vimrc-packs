@@ -90,6 +90,11 @@ endfunction
 augroup FPS2display0
   autocmd CursorMoved * call FPS2display()
 augroup END
+" highlights
+highlight Quest ctermfg=yellow
+call matchadd("Quest", "?")
+highlight Excla ctermfg=red
+call matchadd("Excla", "!")
 
 " === Editor behavior
 " Better tab
