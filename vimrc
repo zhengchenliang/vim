@@ -40,7 +40,9 @@ match VerticalBar /\v\|/
 "  fps display
 function! FPS2display()
   let line1 = getline(1)
-  let parts1 = split(line1, '|')
+  let sects1 = split(line1, '||')
+  let sect1 = sects1[0]
+  let parts1 = split(sect1, '|')
   let partn1 = len(parts1)
   if partn1 < 2
     return
@@ -53,7 +55,7 @@ function! FPS2display()
   let line0 = getline('.')
   let parts0 = split(line0, '|')
   let partn0 = len(parts0)
-  if partn0 != partn1 - 2
+  if partn0 != partn1
     echo parts1[-1] . " #" . (getpos('.')[1] - 1) . " | ignored"
     return
   endif
