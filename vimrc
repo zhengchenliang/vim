@@ -165,7 +165,7 @@ noremap h p
 func! CopyCurrentLine()
   call system('echo -n ' . shellescape(getline('.')) . ' | xclip -selection clipboard')
 endfunc
-nnoremap <C-c> :call CopyCurrentLine()<CR><CR>
+nnoremap <C-c> :call CopyCurrentLine()<CR>
 function! CopyVisualSelection()
   try
     " Save the current content of register a
@@ -181,17 +181,22 @@ function! CopyVisualSelection()
     let @a = a_save
   endtry
 endfunction
-vnoremap <C-c> :call CopyVisualSelection()<CR><CR>
+vnoremap <C-c> :<C-u>call CopyVisualSelection()<CR>
 func! PasteFromXclip()
   let lin = line(".")
   exec lin . "r !xclip -o -sel clip"
 endfunc
-noremap <C-v> :call PasteFromXclip()<CR><CR>
-" Poor vim cannot distinguish Ctrl and Ctrl + Shift
-" Must use Ctrl + Shift + v to paste at cursor at insert mode
-"inoremap <C-v> <C-S-v>
-nnoremap vb <C-v>
+noremap <C-v> :call PasteFromXclip()<CR>
+nnoremap <C-a> ggVG
 
+" Visual Block
+nnoremap vb <C-v>
+function! Forward2Spaces()
+  execute "'<,'>normal! I  "
+  " Reselect the visual block
+  normal! gv  
+endfunction
+xnoremap <Space> :<C-u>call Forward2Spaces()<CR>
 
 " Search
 map <LEADER><CR> :nohlsearch<CR>
